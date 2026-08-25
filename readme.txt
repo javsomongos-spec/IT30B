@@ -8,7 +8,7 @@ INSERT INTO <table_name_in_plural>;
 
 #UTILITY COMMANDS 
 c1s
-mysqldump -u root -p --databases library >"D:\xampp\htdocs\dev\IT30B\backups\date:~-4%%date:~4,2%%time:~7,2%_%time:~0,2%%time:~3,2%%time:~6,2%_library>sql"
+mysqldump -u root -p --databases library >"D:\xampp\htdocs\dev\IT30B\backups\date:~-4%_%date:~4,2%_%time:~7,2%_%time:~0,2%_%time:~3,2%_%time:~6,2%_library.sql"
 
 
 SELECT br.borrow_id, s.student_id,
@@ -32,5 +32,7 @@ CREATE TABLE borrow (
      CONSTRAINT fk_student FOREIGN KEY (student_id) REFERENCES student(student_id),
      CONSTRAINT fk_book FOREIGN KEY (book_id) REFERENCES books(book_id)
 
+
 );
 
+mysqldump -u root -p --databases library_db > "C:\IT30B\backups\%date:~-4%_%date:~4,2%_%date:~7,2%_%time:~0,2%_%time:~3,2%_%time:~6,2%_library_db.sql"
