@@ -19,18 +19,18 @@
 -- Current Database: `library_db`
 --
 
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `library_db` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `library` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 
-USE `library_db`;
+USE `library`;
 
 --
 -- Table structure for table `books`
 --
 
-DROP TABLE IF EXISTS `books`;
+DROP TABLE IF EXISTS `book`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `books` (
+CREATE TABLE `book` (
   `book_id` int(11) NOT NULL AUTO_INCREMENT,
   `book_title` varchar(50) NOT NULL,
   `book_author` varchar(50) NOT NULL,
@@ -44,9 +44,9 @@ CREATE TABLE `books` (
 -- Dumping data for table `books`
 --
 
-LOCK TABLES `books` WRITE;
+LOCK TABLES `book` WRITE;
 /*!40000 ALTER TABLE `books` DISABLE KEYS */;
-INSERT INTO `books` VALUES (1,'BookWorm','Lex','Science FIction','2026-08-25 01:24:45'),(2,'Project Loki','Unknown','Mystery','2026-08-25 01:25:02'),(3,'Demon Slayer','Koyoharu Gotouge','Fiction','2026-08-25 01:45:31');
+INSERT INTO `book` VALUES (1,'BookSNAKE','ALex','ENGLISH FIction','2026-08-25 01:24:45'),(2,'Project Lok','known','Mystery','2026-08-25 01:25:02'),(3,'Demon Slayer','Koyoharu Gotouge','Fiction','2026-08-25 01:45:31');
 /*!40000 ALTER TABLE `books` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -85,10 +85,10 @@ UNLOCK TABLES;
 -- Table structure for table `students`
 --
 
-DROP TABLE IF EXISTS `students`;
+DROP TABLE IF EXISTS `student`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `students` (
+CREATE TABLE `student` (
   `student_id` int(11) NOT NULL AUTO_INCREMENT,
   `student_first_name` varchar(50) NOT NULL,
   `student_last_name` varchar(50) NOT NULL,
@@ -102,9 +102,9 @@ CREATE TABLE `students` (
 -- Dumping data for table `students`
 --
 
-LOCK TABLES `students` WRITE;
+LOCK TABLES `student` WRITE;
 /*!40000 ALTER TABLE `students` DISABLE KEYS */;
-INSERT INTO `students` VALUES (1,'BENCH PIET','MANGKABONG','BSIT','2026-08-20 02:54:49'),(2,'QUEN','MANGKABONG','BSED','2026-08-20 02:54:49'),(3,'REWM','MANGKABONG','BSED','2026-08-20 02:55:49');
+INSERT INTO `student` VALUES (1,'JAY','OMONGOS','BSIT','2026-08-20 02:54:49'),(2,'JAYVIE','OMONGOS','BSIT','2026-08-20 02:54:49'),(3,'VIE','OMONGOS','BSIT','2026-08-20 02:55:49');
 /*!40000 ALTER TABLE `students` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
