@@ -102,7 +102,7 @@ CREATE TABLE `student` (
 -- Dumping data for table `students`
 --
 
-LOCK TABLES `students` WRITE;
+LOCK TABLES `student` WRITE;
 /*!40000 ALTER TABLE `students` DISABLE KEYS */;
 INSERT INTO `student` VALUES (1,'Jay','OMONGOS','BSIT','2026-08-20 02:54:49'),(2,'Jayvie','OMONGOS','BSIT','2026-08-20 02:54:49'),(3,'VIE','OMONGOS','BSIT','2026-08-20 02:55:49');
 /*!40000 ALTER TABLE `students` ENABLE KEYS */;
