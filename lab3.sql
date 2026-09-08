@@ -82,3 +82,7 @@ FROM borrow br
 JOIN student s ON br.student_id = s.student_id
 JOIN books b ON br.book_id = b.book_id
 WHERE br.borrow_id = 4;
+
+
+------
+

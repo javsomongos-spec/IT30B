@@ -35,4 +35,4 @@ CREATE TABLE borrow (
 
 );
 
-mysqldump -u root -p --databases library_db > "C:\IT30B\backups\%date:~-4%_%date:~4,2%_%date:~7,2%_%time:~0,2%_%time:~3,2%_%time:~6,2%_library_db.sql"
+mysqldump -u root -p --databases library > D:\xampp\htdocs\NEW DEV\IT30B\backups%time:~0,2%_%time:~3,2%_%time:~6,2%_library_db.sql"
