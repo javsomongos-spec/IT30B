@@ -1,0 +1,58 @@
+SELECT * FROM books;
+
+-- books2 :select books in asc order by id;
+SELECT * FROM books 
+ORDER BY book_id ASC;
+
+
+-- books2 :select student in asc order by id
+SELECT * FROM books
+ORDER BY book_id DESC;
+
+
+-- books SQL#2 :select books in asc order by author
+SELECT * FROM books 
+ORDER BY book_author ASC;
+
+
+-- books  :select student in asc order by catergory
+SELECT * FROM books
+ORDER BY book_category ASC;
+
+
+
+
+select
+book_id,
+book_title,
+book_author,
+book_category
+from books;
+
+
+
+
+UPDATE book
+SET book_title = 'THE GREAT CHRISTIAN',
+    book_author = 'BENCH PIET MAGKABONG'
+WHERE book_id = 1;
+
+
+
+
+
+
+select
+student_id,
+student_first_name,
+student_last_name
+from student;
+
+
+
+
+
+UPDATE student
+SET student_first_name = 'John anderson',
+ student_last_name =   'Doe'
+WHERE student_id = 3

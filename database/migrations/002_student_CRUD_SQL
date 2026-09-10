@@ -1,0 +1,74 @@
+--student SQL#1 :select all -students
+SELECT * FROM student;
+
+-- student SQL#2 :select student in asc order by id;
+SELECT * FROM student 
+ORDER BY student_id ASC;
+
+-- student SQL#2 :select student in asc order by id;
+SELECT * FROM student 
+ORDER BY student_id DESC;
+
+
+-- student SQL#2 :select student in asc order by last_name;
+SELECT * FROM student 
+ORDER BY student_last_name ASC;
+
+
+-- student SQL#2 :select student in asc order by last_name;
+SELECT * FROM student 
+ORDER BY student_last_name DESC;
+
+
+-- student SQL#2 :select student in asc order by first_name;
+SELECT * FROM student 
+ORDER BY student_first_name ASC;
+
+-- student SQL#2 :select student in asc order by first_name;
+SELECT * FROM student 
+ORDER BY student_first_name DESC;
+
+--You can modify displayed columns by selecting
+--speciffic columns instead of using * in the select command
+SELECT
+student_first_name,
+student_last_name
+FROM student 
+ORDER BY student_first_name ASC;
+
+--student SQL#2 limit 1 = you can change the limit to any number you want to display
+
+SELECT
+student_first_name,
+student_last_name
+FROM student 
+ORDER BY student_first_name ASC
+LIMIT 1;
+
+
+--student SQL#10 - select a student based on the student_id
+SELECT
+ student_first_name,
+ student_last_name
+ FROM student
+ WHERE student_id = 1
+ liMIT 1;
+
+--student SQL#10 - select a student based on the student_id
+
+UPDATE student
+SET student_first_name = 'Jayviemaster',
+ student_last_name = 'Omongosmaster'
+WHERE student_id = 1;
+
+UPDATE student
+SET student_first_name = 'Jayvex',
+ student_last_name =   'Omongosx'
+WHERE student_id = 2;
+
+
+UPDATE BOOKS 
+SET book_title = 'THE GREAT CHRISTIAN'
+    book_author = 'BENCH PIET MAGKABONG'
+    book_category = 'Fiction - Updated'
+WHERE book_id = 1;
