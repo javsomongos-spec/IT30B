@@ -32,7 +32,7 @@ from books;
 
 
 
-UPDATE book
+UPDATE books
 SET book_title = 'THE GREAT CHRISTIAN',
     book_author = 'BENCH PIET MAGKABONG'
 WHERE book_id = 1;
