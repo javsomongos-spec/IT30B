@@ -1,6 +1,6 @@
 -- MariaDB dump 10.19  Distrib 10.4.32-MariaDB, for Win64 (AMD64)
 --
--- Host: localhost    Database: library_db
+-- Host: localhost    Database: library
 -- ------------------------------------------------------
 -- Server version	10.4.32-MariaDB
 
@@ -16,7 +16,7 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Current Database: `library_db`
+-- Current Database: `library`
 --
 
 CREATE DATABASE /*!32312 IF NOT EXISTS*/ `library` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
@@ -27,10 +27,10 @@ USE `library`;
 -- Table structure for table `books`
 --
 
-DROP TABLE IF EXISTS `book`;
+DROP TABLE IF EXISTS `books`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `book` (
+CREATE TABLE `books` (
   `book_id` int(11) NOT NULL AUTO_INCREMENT,
   `book_title` varchar(50) NOT NULL,
   `book_author` varchar(50) NOT NULL,
@@ -44,9 +44,9 @@ CREATE TABLE `book` (
 -- Dumping data for table `books`
 --
 
-LOCK TABLES `book` WRITE;
+LOCK TABLES `books` WRITE;
 /*!40000 ALTER TABLE `books` DISABLE KEYS */;
-INSERT INTO `book` VALUES (1,'BookSNAKE','ALex','ENGLISH FIction','2026-08-25 01:24:45'),(2,'Project Lok','known','Mystery','2026-08-25 01:25:02'),(3,'Demon Slayer','Koyoharu Gotouge','Fiction','2026-08-25 01:45:31');
+INSERT INTO `books` VALUES (1,'BookSNAKE','ALex','ENGLISH FIction','2026-08-25 01:24:45'),(2,'Project Lok','known','Mystery','2026-08-25 01:25:02'),(3,'Demon Slayer','Koyoharu Gotouge','Fiction','2026-08-25 01:45:31');
 /*!40000 ALTER TABLE `books` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -67,7 +67,7 @@ CREATE TABLE `borrow` (
   KEY `fk_borrow_student` (`student_id`),
   KEY `fk_borrow_book` (`book_id`),
   CONSTRAINT `fk_borrow_book` FOREIGN KEY (`book_id`) REFERENCES `books` (`book_id`),
-  CONSTRAINT `fk_borrow_student` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`)
+  CONSTRAINT `fk_borrow_student` FOREIGN KEY (`student_id`) REFERENCES `student` (`student_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -82,7 +82,7 @@ INSERT INTO `borrow` VALUES (4,1,2,'2026-08-25 01:45:05',NULL),(5,2,1,'2026-08-2
 UNLOCK TABLES;
 
 --
--- Table structure for table `students`
+-- Table structure for table `student`
 --
 
 DROP TABLE IF EXISTS `student`;
@@ -99,13 +99,13 @@ CREATE TABLE `student` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `students`
+-- Dumping data for table `student`
 --
 
 LOCK TABLES `student` WRITE;
-/*!40000 ALTER TABLE `students` DISABLE KEYS */;
+/*!40000 ALTER TABLE `student` DISABLE KEYS */;
 INSERT INTO `student` VALUES (1,'JAY','OMONGOS','BSIT','2026-08-20 02:54:49'),(2,'JAYVIE','OMONGOS','BSIT','2026-08-20 02:54:49'),(3,'VIE','OMONGOS','BSIT','2026-08-20 02:55:49');
-/*!40000 ALTER TABLE `students` ENABLE KEYS */;
+/*!40000 ALTER TABLE `student` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
