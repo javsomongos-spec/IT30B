@@ -1,7 +1,7 @@
 <?php
 //Database connection
 $host = "localhost";
-$db = 'IT30B_lab_db';
+$db = 'it30b_lab_db';
 $user = 'root';
 $pass = '';
 $charset = 'utf8mb4';
@@ -34,12 +34,13 @@ $action = $_GET['action'] ?? 'list';
 if ($section == 'student') {
 
 
+$stmt = $pdo->query("
+    SELECT *
+    FROM student
+    ORDER BY student_id DESC
+");
 
-       $stmt = $pdo->("SELECT * FROM student
-       order by student_id DESC;
-       ");
-
-  students = $stmt->fetchAll();
+$student = $stmt->fetchAll();
 }
 
 //create student
@@ -70,6 +71,52 @@ if ($section == 'student' && $action == 'create') {
     }
 }
 
+
+//update student 
+if($section=='student'&& $action==='update')
+    $sudentID = (int) ($_GET ['ID']) ?? 00;
+    if($_SERVER['REQUEST_METHOD'] === 'POST'){
+
+     $sql ="
+     UPDATE STUDENT
+     SET
+         student_first_name = ?,
+         student_last_name =?,
+         student_course =?
+         ";
+
+         $stmt = $pdo->prepare($sql);
+         $stmt = execute([
+            $firstname,
+            $lastname,
+            $course,
+            $studentId
+         ]);
+
+
+         header("location:index.php?section=student");
+         exit;
+
+    }
+
+    // retreive student
+
+    $stmt = $pdo=>prepare("
+    SELECT *
+          FROM student
+          WHERE student_id = ?
+    ");
+
+    $stmt=>execute([$studentId]);
+    $student= $stmt->fetch();
+
+
+
+    if(!$student){
+        die("student Not Found");
+        
+    }
+     
 
 
 
@@ -113,6 +160,16 @@ if ($section == 'student' && $action == 'create') {
             <h2>create student</h2>
            
             <form method="POST">
+        </form>
+        <?php elseif ($action==="update"):?>
+            <h2>Update Student info info<h
+ 
+
+
+
+
+
+
                 <label> First Name</label>
                 <br>
                 <input type="text" name="first_name" required>
@@ -179,9 +236,10 @@ if ($section == 'student' && $action == 'create') {
                                       <?=htmlspecialchars($student['created_at'])?>
                                 </td>
                                 <td> 
-                                    <a href="index.php?section=student&action=edit&id=<?= $student['student_id'] ?>">Edit</a>
+                                    <a href="index.php?section=student&action=update&id=<?= $student['student_id'] ?>">Edit</a>
                                     |
-                                    <a href="index.php?section=student&action=delete&id=<?= $student['student_id'] ?>">Delete</a>
+                                    
+                                    <a> Delete</a>
                                 </td>
                             </tr>
                             <?php endforeach; ?>
