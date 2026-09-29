@@ -47,6 +47,74 @@ if ($section === 'student') {
     $students = $stmt->fetchAll();
 }
 
+
+$books = [];
+$book = null;
+
+if ($section === 'books') {
+
+    $stmt = $pdo->query("
+        SELECT *
+        FROM books
+        ORDER BY book_id DESC
+    ");
+
+    $books = $stmt->fetchAll();
+
+
+    if ($action === 'update' && isset($_GET['id'])) {
+
+        $id = $_GET['id'];
+
+        $stmt = $pdo->prepare("
+            SELECT *
+            FROM books
+            WHERE book_id = ?
+        ");
+
+        $stmt->execute([$id]);
+
+        $book = $stmt->fetch();
+    }
+}
+
+
+if ($section === 'books' && $action === 'update') {
+
+    $bookId = (int) ($_GET['id'] ?? 0);
+
+    // Update book on POST
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+        $bookTitle = $_POST['book_title'] ?? '';
+        $bookAuthor = $_POST['book_author'] ?? '';
+        $bookCategory = $_POST['book_category'] ?? '';
+
+        $sql = ("
+            UPDATE BOOKS
+            SET
+                book_title = ?,
+                book_author = ?,
+                book_category = ?
+            WHERE book_id = ?
+        ");
+
+        $stmt = $pdo->prepare($sql);
+
+        $stmt->execute([
+            $bookTitle,
+            $bookAuthor,
+            $bookCategory,
+            $bookId
+        ]);
+
+        header("Location: index.php?section=books");
+        exit;
+    }
+}
+
+
+
 // Create Student
 if ($section === 'student' && $action === 'create') {
 
@@ -155,7 +223,7 @@ if($section === 'student' && $action === 'update'){
     <h1>Simple Library System</h1>
 
     <nav>
-        <a href="index.php?section=students">
+        <a href="index.php?section=student">
             Student
         </a>
 
@@ -240,7 +308,7 @@ if($section === 'student' && $action === 'update'){
                     Save
                 </button>
 
-                <a href="index.php?section=students">
+                <a href="index.php?section=student">
                     Cancel
                 </a>
 
@@ -379,6 +447,206 @@ if($section === 'student' && $action === 'update'){
     <?php elseif ($section === 'books'): ?>
 
         <h2>Books</h2>
+
+<?php if ($action === 'create'): ?>
+
+    <h3>Create Books</h3>
+
+    <form method="POST">
+
+        <p>
+            <label for="book_title">
+                Book Title
+            </label>
+
+            <br>
+
+            <input
+                type="text"
+                id="book_title"
+                name="book_title"
+                required
+            >
+        </p>
+
+
+        <p>
+            <label for="book_author">
+                Author
+            </label>
+
+            <br>
+
+            <input
+                type="text"
+                id="book_author"
+                name="book_author"
+                required
+            >
+        </p>
+
+
+        <p>
+            <label for="book_category">
+                Category
+            </label>
+
+            <br>
+
+            <input
+                type="text"
+                id="book_category"
+                name="book_category"
+                required
+            >
+        </p>
+
+
+        <button type="submit">
+            Save
+        </button>
+
+        <a href="index.php?section=books">
+            Cancel
+        </a>
+
+    </form>
+
+
+<?php elseif ($action === "update"): ?>
+
+    <h2>Update Books Info</h2>
+
+    <form method="POST">
+
+        <p>
+            <label for="book_title">
+                Book Title
+            </label>
+
+            <br>
+
+            <input
+                type="text"
+                id="book_title"
+                name="book_title"
+                value="<?= htmlspecialchars($book['book_title']) ?>"
+                required
+            >
+        </p>
+
+
+        <p>
+            <label for="book_author">
+                Author
+            </label>
+
+            <br>
+
+            <input
+                type="text"
+                id="book_author"
+                name="book_author"
+                value="<?= htmlspecialchars($book['book_author']) ?>"
+                required
+            >
+        </p>
+
+
+        <p>
+            <label for="book_category">
+                Category
+            </label>
+
+            <br>
+
+            <input
+                type="text"
+                id="book_category"
+                name="book_category"
+                value="<?= htmlspecialchars($book['book_category']) ?>"
+                required
+            >
+        </p>
+
+
+        <button type="submit">
+            Save
+        </button>
+
+        <a href="index.php?section=books">
+            Cancel
+        </a>
+
+    </form>
+
+
+<?php else: ?>
+
+    <table border="1">
+
+        <thead>
+
+            <tr>
+                <th>Book ID</th>
+                <th>Book Title</th>
+                <th>Book Author</th>
+                <th>Book Category</th>
+                <th>Book Created At</th>
+                <th>Actions</th>
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+
+            <?php foreach ($books as $book): ?>
+
+                <tr>
+
+                    <td>
+                        <?= htmlspecialchars($book['book_id']) ?>
+                    </td>
+
+                    <td>
+                        <?= htmlspecialchars($book['book_title']) ?>
+                    </td>
+
+                    <td>
+                        <?= htmlspecialchars($book['book_author']) ?>
+                    </td>
+
+                    <td>
+                        <?= htmlspecialchars($book['book_category']) ?>
+                    </td>
+
+                    <td>
+                        <?= htmlspecialchars($book['book_created_at']) ?>
+                    </td>
+
+                    <td>
+
+                     <a href="index.php?section=books&action=update&id=<?= $book['book_id'] ?>">
+                       Edit
+                      </a>
+
+                        <a href="#">
+                            Delete
+                        </a>
+
+                    </td>
+
+                </tr>
+
+            <?php endforeach; ?>
+
+        </tbody>
+
+    </table>
+
+
+<?php endif; ?>
 
       
 
